@@ -12,11 +12,14 @@ use App\Consts\Queue;
 use Illuminate\Http\Request;
 use App\Services\Common\QueueService;
 
+
 class IndexController extends CallbackBaseController
 {
+    protected $queueServ;
 
-	public function __construct(Request $request)
+	public function __construct(Request $request, QueueService $queueServ)
 	{
+	    $this->queueServ = $queueServ;
 		parent::__construct($request);
 	}
 
@@ -28,9 +31,8 @@ class IndexController extends CallbackBaseController
 	public function test()
 	{
 		$msg = $this->input['msg'];
-		$queueServ = new QueueService();
-		$queueServ->handle(Queue::TEST_TEST0,0,'_test0',$msg);
-		$this->responseData(200);
+		$this->queueServ->handle(Queue::TEST_TEST0,0,'_test0',$msg);
+		return $this->responseData(200);
 	}
 
 

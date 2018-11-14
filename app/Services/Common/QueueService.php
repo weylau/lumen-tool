@@ -86,7 +86,7 @@ class QueueService extends CommonBaseService
 	 */
 	private function _test0($key, $msg)
 	{
-        $this->log->info("msg:".$msg['data']['msg']);
+        $this->log->info("msg-golang:".$msg['data']['msg']);
 		return true;
 	}
 
